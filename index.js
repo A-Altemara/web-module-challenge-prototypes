@@ -15,19 +15,19 @@
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-// function Person(name, age) {
-//   this.name = name;
-//   this.age = age;  
-//   this.stomach = [];
-//   this.MaxStomach = 10;
-// }
-
-function Person(name, age, maxStomach = 10) {
+function Person(name, age) {
   this.name = name;
   this.age = age;  
   this.stomach = [];
-  this.MaxStomach = maxStomach;
+  this.MaxStomach = 10;
 }
+
+// function Person(name, age, maxStomach = 10) {
+//   this.name = name;
+//   this.age = age;  
+//   this.stomach = [];
+//   this.MaxStomach = maxStomach;
+// }
 
 Person.prototype.eat = function(someFood){
   if(this.stomach.length < this.MaxStomach) {
@@ -40,6 +40,7 @@ Person.prototype.poop = function(){
 Person.prototype.toString = function(){
   return `${this.name}, ${this.age}`
 }
+
 
 
 /*
@@ -86,10 +87,15 @@ Car.prototype.drive =  function(distance) {
         + Should return a string "Playing with x", x being the favorite toy.
 */
 
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
 }
+Baby.prototype = Object.create(Person.prototype)
 
+Baby.prototype.play = function() {
+  return `Playing with ${this.favoriteToy}`
+}
 
 /* 
   TASK 4
