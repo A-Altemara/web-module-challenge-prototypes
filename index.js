@@ -15,8 +15,22 @@
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
+function Person(name, age) {
+  this.name = name;
+  this.age = age;  
+  this.stomach = [];
+}
 
+Person.prototype.eat = function(someFood){
+  if(this.stomach.length <= 9) {
+    this.stomach.push(someFood)
+  }
+}
+Person.prototype.poop = function(){
+  this.stomach = []
+}
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`
 }
 
 
@@ -57,10 +71,10 @@ function Baby() {
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. When not bounded by any other scope 'This' has window or global scope. Arrow functions always have this scope which is why they do not work.
+  2. Implicit binding is binding with dot syntax.  everything on the left of the . is bound the the things on the right.
+  3. Explicit binding is when the call or apply functions are used to provide the context for the functions being used. bind can make this a more lasing connection
+  4. New binding is a way to create things from a set of data, like procedurally generating enemies in a video game and requires the 'new' keyword
 */
 
 ///////// END OF CHALLENGE /////////
